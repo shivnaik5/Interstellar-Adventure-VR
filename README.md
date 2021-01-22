@@ -1,4 +1,4 @@
 # Interstellar Adventure
 
-Sample VR project for Oculus Quest 2
+Sample Unity VR project for Oculus Quest 2
  
