@@ -60,3 +60,4 @@ crashlytics-build.properties
 
 # Additional files
 AdditionalFiles/*
+Assets/Imports/*
