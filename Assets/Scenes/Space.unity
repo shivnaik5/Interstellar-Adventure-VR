@@ -346,8 +346,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateTime: 0.003
-  sun: {fileID: 1985308840}
   orbitSpeed: 10
+  sun: {fileID: 1985308840}
+  disableOrbit: 0
+  disableRotation: 0
 --- !u!1 &103837899
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +499,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4426350956269854, guid: 6a3df571b8d9bb245aaa130d58f32549, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -290.1592
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4426350956269854, guid: 6a3df571b8d9bb245aaa130d58f32549, type: 3}
       propertyPath: m_LocalPosition.y
@@ -505,7 +507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4426350956269854, guid: 6a3df571b8d9bb245aaa130d58f32549, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7371.64
+      value: 9517
       objectReference: {fileID: 0}
     - target: {fileID: 4426350956269854, guid: 6a3df571b8d9bb245aaa130d58f32549, type: 3}
       propertyPath: m_LocalRotation.x
@@ -541,15 +543,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4426350956269854, guid: 6a3df571b8d9bb245aaa130d58f32549, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4426350956269854, guid: 6a3df571b8d9bb245aaa130d58f32549, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4426350956269854, guid: 6a3df571b8d9bb245aaa130d58f32549, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a3df571b8d9bb245aaa130d58f32549, type: 3}
@@ -572,8 +574,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateTime: 0.03
-  sun: {fileID: 1985308840}
   orbitSpeed: 5
+  sun: {fileID: 1985308840}
+  disableOrbit: 0
+  disableRotation: 0
 --- !u!1001 &438418688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -595,7 +599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4264756535434248, guid: 4604f693813f8304782a77defc6cc2b7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1031.417
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 4264756535434248, guid: 4604f693813f8304782a77defc6cc2b7, type: 3}
       propertyPath: m_LocalRotation.x
@@ -631,15 +635,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4264756535434248, guid: 4604f693813f8304782a77defc6cc2b7, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4264756535434248, guid: 4604f693813f8304782a77defc6cc2b7, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4264756535434248, guid: 4604f693813f8304782a77defc6cc2b7, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4604f693813f8304782a77defc6cc2b7, type: 3}
@@ -662,8 +666,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateTime: 0.04
-  sun: {fileID: 1985308840}
   orbitSpeed: 2
+  sun: {fileID: 1985308840}
+  disableOrbit: 0
+  disableRotation: 0
 --- !u!1001 &541485022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -677,7 +683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4591335217586354, guid: 0e9dbb45aad93224ca4ada4176525a3c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4591335217586354, guid: 0e9dbb45aad93224ca4ada4176525a3c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -685,7 +691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4591335217586354, guid: 0e9dbb45aad93224ca4ada4176525a3c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4984
+      value: 7152
       objectReference: {fileID: 0}
     - target: {fileID: 4591335217586354, guid: 0e9dbb45aad93224ca4ada4176525a3c, type: 3}
       propertyPath: m_LocalRotation.x
@@ -721,15 +727,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4591335217586354, guid: 0e9dbb45aad93224ca4ada4176525a3c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4591335217586354, guid: 0e9dbb45aad93224ca4ada4176525a3c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4591335217586354, guid: 0e9dbb45aad93224ca4ada4176525a3c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e9dbb45aad93224ca4ada4176525a3c, type: 3}
@@ -865,7 +871,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 2
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1042,8 +1048,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateTime: 0.02
+  orbitSpeed: 1
   sun: {fileID: 1985308840}
-  orbitSpeed: 7
+  disableOrbit: 1
+  disableRotation: 0
+--- !u!54 &854905467
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854905462}
+  serializedVersion: 2
+  m_Mass: 10000
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &854905469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854905462}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f9a43d9b32aea47afb6d2a29f65c03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravitationalConstant: 5
+  cutoffDistance: 500
+  rb: {fileID: 854905467}
+  spacecraftRigidbody: {fileID: 742981180}
+  gravityWell: 1
 --- !u!1 &910831646
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,7 +1369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4300305678831952, guid: 5acc19c5c6eb469448268f67f56203db, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.57492954
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4300305678831952, guid: 5acc19c5c6eb469448268f67f56203db, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1336,7 +1377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4300305678831952, guid: 5acc19c5c6eb469448268f67f56203db, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 278.4173
+      value: 4349
       objectReference: {fileID: 0}
     - target: {fileID: 4300305678831952, guid: 5acc19c5c6eb469448268f67f56203db, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1852,8 +1893,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateTime: 0.01
-  sun: {fileID: 1985308840}
   orbitSpeed: 0
+  sun: {fileID: 1985308840}
+  disableOrbit: 0
+  disableRotation: 0
 --- !u!4 &1985308840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4264756535434248, guid: 4604f693813f8304782a77defc6cc2b7,
@@ -1931,7 +1974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4164595596026676, guid: 709343c2b0b964b40b763186d27edc47, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.351428
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4164595596026676, guid: 709343c2b0b964b40b763186d27edc47, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1939,7 +1982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4164595596026676, guid: 709343c2b0b964b40b763186d27edc47, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2801.4165
+      value: 426
       objectReference: {fileID: 0}
     - target: {fileID: 4164595596026676, guid: 709343c2b0b964b40b763186d27edc47, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1975,15 +2018,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4164595596026676, guid: 709343c2b0b964b40b763186d27edc47, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 4164595596026676, guid: 709343c2b0b964b40b763186d27edc47, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 4164595596026676, guid: 709343c2b0b964b40b763186d27edc47, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 709343c2b0b964b40b763186d27edc47, type: 3}
@@ -2106,8 +2149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 50
   rotationSpeed: 50
-  torque: 50
-  maxVelocity: 100
+  torque: 0.03
+  maxSpinSpeed: 0.03
+  maxVelocity: 20
   rb: {fileID: 742981180}
   flightStick: {fileID: 1248425613}
   throttle: {fileID: 2077146476968733503}
@@ -2115,10 +2159,12 @@ MonoBehaviour:
   disablePitch: 0
   disableRoll: 0
   disableYaw: 0
-  disableThrottle: 1
-  pitchTolerance: -0.05
-  yawTolderance: -0.05
-  rollTolerance: -0.5
+  disableThrottle: 0
+  pitchTolerance: -0.02
+  yawTolderance: -0.02
+  rollTolerance: -0.05
+  maxDrag: 3
+  minDrag: 0
 --- !u!114 &919132148689388395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2128,13 +2174,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 919132148689388393}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 503e86334720f5d4494df1862b02c80b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c75b32b22595c949bfc5cc25e218105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torque: 100
-  thrust: 100
-  speed: 50
   rb: {fileID: 742981180}
+  scale: 10
 --- !u!4 &968613350068958213
 Transform:
   m_ObjectHideFlags: 0

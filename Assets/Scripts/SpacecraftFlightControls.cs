@@ -10,6 +10,7 @@ public class SpacecraftFlightControls : MonoBehaviour
     public float rotationSpeed = 50f;
 
     public float torque = 50f;
+    public float maxSpinSpeed;
 
     public float maxVelocity = 100f;
 
@@ -30,6 +31,9 @@ public class SpacecraftFlightControls : MonoBehaviour
     public float yawTolderance = -0.05f;
     public float rollTolerance = -0.5f;
 
+    public float maxDrag = 3f;
+    public float minDrag = 0f;
+    
     void Control(Vector3 controlVector, float tolerance, bool disabled, Func<float> fn)
     {
         if (disabled) return;
@@ -37,31 +41,38 @@ public class SpacecraftFlightControls : MonoBehaviour
         float diff = fn();
 
         float controlRotationSpeed = 0f;
-        if (diff > Math.Abs(tolerance))
+        if (diff > Math.Abs(tolerance) || diff < tolerance)
         {
-            controlRotationSpeed = rotationSpeed;
-        }
-        else if (diff < tolerance)
-        {
-            controlRotationSpeed = rotationSpeed * -1;
+            controlRotationSpeed = diff;
         }
 
-        transform.Rotate(controlVector, controlRotationSpeed * Time.deltaTime);
+        rb.AddRelativeTorque(controlVector * controlRotationSpeed * torque);
+
+        Vector3 spin = rb.angularVelocity.normalized;
+        rb.angularVelocity = spin * maxSpinSpeed;
     }
 
-    void Pitch()
+    void Pitch(FlightStick fs)
     {
-        Control(Vector3.forward, pitchTolerance, disablePitch, flightStick.GetComponent<FlightStick>().LateralAxis);
+        Control(Vector3.forward, pitchTolerance, disablePitch, fs.LateralAxis);
     }
 
-    void Roll()
+    void Roll(FlightStick fs)
     {
-        Control(Vector3.right, rollTolerance, disableRoll, flightStick.GetComponent<FlightStick>().VerticalAxis);
+        Control(Vector3.right, rollTolerance, disableRoll, fs.VerticalAxis);
     }
 
-    void Yaw()
+    void Yaw(FlightStick fs)
     {
-        Control(Vector3.up, yawTolderance, disableYaw, flightStick.GetComponent<FlightStick>().LongitudinalAxis);        
+        Control(Vector3.up, yawTolderance, disableYaw, fs.LongitudinalAxis);        
+    }
+
+    void FlightControl()
+    {
+        FlightStick fs = flightStick.GetComponent<FlightStick>();
+        Pitch(fs);
+        Roll(fs);
+        Yaw(fs);
     }
 
     void Throttle()
@@ -75,22 +86,13 @@ public class SpacecraftFlightControls : MonoBehaviour
     void Drag()
     {
         bool isDragButtonPressed = dragButton.transform.Find("TriggerZone").GetComponent<DragButton>().IsPressed();
-        if (isDragButtonPressed)
-        {
-            rb.drag = 3;
-        }
-        else
-        {
-            rb.drag = 0;
-        }
+        rb.drag = isDragButtonPressed ? maxDrag : minDrag;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Throttle();
-        Pitch();
-        Roll();
-        Yaw();
+        FlightControl();
         Drag();
     }
 }

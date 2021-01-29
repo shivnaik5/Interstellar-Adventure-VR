@@ -69,6 +69,7 @@ public class FlightStick : MonoBehaviour
         float zRotDiff = hand.localEulerAngles.y - originalHandY;
 
         zRotationDiff = ((zRotDiff > -180) ? zRotDiff : ((360 - originalHandY) + (360 + zRotDiff))) * Mathf.Deg2Rad;
+        zRotationDiff /= 10;
 
         return zRotDiff;
     }

@@ -33,19 +33,11 @@ public class DragButton : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            
-            float diffy = other.transform.localPosition.y - originalHandPosition.y;
-            diffy = Mathf.Clamp(diffy, magnitudeUpAndDown, 0);
-            buttonMesh.localPosition = new Vector3(upTransform.localPosition.x, upTransform.localPosition.y + diffy, upTransform.localPosition.z);
+            float yDiff = other.transform.localPosition.y - originalHandPosition.y;
+            yDiff = Mathf.Clamp(yDiff, magnitudeUpAndDown, 0);
+            buttonMesh.localPosition = new Vector3(upTransform.localPosition.x, upTransform.localPosition.y + yDiff, upTransform.localPosition.z);
 
-            if (diffy == magnitudeUpAndDown)
-            {
-                isButtonPressed = true;
-            }
-            else
-            {
-                isButtonPressed = false;
-            }
+            isButtonPressed = (yDiff == magnitudeUpAndDown) ? true : false;
         }
     }
 
