@@ -1,40 +1,68 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class SpacecraftFlightControls : MonoBehaviour
 {
-    public float speed = 50f;
-    public float rotationSpeed = 50f;
+    [SerializeField]
+    private float speed;
 
-    public float torque = 50f;
-    public float maxSpinSpeed;
+    [SerializeField]
+    private float torque;
 
-    public float maxVelocity = 100f;
+    [SerializeField]
+    private float maxSpinSpeed;
 
-    public Rigidbody rb;
+    [SerializeField]
+    private float maxVelocity;
 
-    public GameObject flightStick;
+    [SerializeField]
+    private Rigidbody rb;
 
-    public GameObject throttle;
+    [SerializeField]
+    private GameObject flightStick;
 
-    public GameObject dragButton;
+    [SerializeField]
+    private GameObject throttle;
 
-    public bool disablePitch = false;
-    public bool disableRoll = false;
-    public bool disableYaw = false;
-    public bool disableThrottle = false;
+    [SerializeField]
+    private GameObject dragButton;
 
-    public float pitchTolerance = -0.05f;
-    public float yawTolderance = -0.05f;
-    public float rollTolerance = -0.5f;
+    [SerializeField]
+    private bool disablePitch = false;
 
-    public float maxDrag = 3f;
-    public float minDrag = 0f;
-    
-    void Control(Vector3 controlVector, float tolerance, bool disabled, Func<float> fn)
+    [SerializeField]
+    private bool disableRoll = false;
+
+    [SerializeField]
+    private bool disableYaw = false;
+
+    [SerializeField]
+    private bool disableThrottle = false;
+
+    [SerializeField]
+    private float pitchTolerance = -0.05f;
+
+    [SerializeField]
+    private float yawTolderance = -0.05f;
+
+    [SerializeField]
+    private float rollTolerance = -0.5f;
+
+    private float maxDrag = 3f;
+    private float minDrag = 0f;
+    private float minAngularDrag = 0f;
+    private float maxAngularDrag = 100f;
+
+    private FlightStick fs;
+    private DragButton dragButtonTriggerZone;
+
+    private void Awake()
+    {
+        fs = flightStick.GetComponent<FlightStick>();
+        dragButtonTriggerZone = dragButton.transform.Find("TriggerZone").GetComponent<DragButton>();
+    }
+
+    private void Control(Vector3 controlVector, float tolerance, bool disabled, Func<float> fn)
     {
         if (disabled) return;
 
@@ -42,9 +70,7 @@ public class SpacecraftFlightControls : MonoBehaviour
 
         float controlRotationSpeed = 0f;
         if (diff > Math.Abs(tolerance) || diff < tolerance)
-        {
             controlRotationSpeed = diff;
-        }
 
         rb.AddRelativeTorque(controlVector * controlRotationSpeed * torque);
 
@@ -52,44 +78,45 @@ public class SpacecraftFlightControls : MonoBehaviour
         rb.angularVelocity = spin * maxSpinSpeed;
     }
 
-    void Pitch(FlightStick fs)
+    private void Pitch()
     {
         Control(Vector3.forward, pitchTolerance, disablePitch, fs.LateralAxis);
     }
 
-    void Roll(FlightStick fs)
+    private void Roll()
     {
         Control(Vector3.right, rollTolerance, disableRoll, fs.VerticalAxis);
     }
 
-    void Yaw(FlightStick fs)
+    private void Yaw()
     {
         Control(Vector3.up, yawTolderance, disableYaw, fs.LongitudinalAxis);        
     }
 
-    void FlightControl()
+    private void FlightControl()
     {
-        FlightStick fs = flightStick.GetComponent<FlightStick>();
-        Pitch(fs);
-        Roll(fs);
-        Yaw(fs);
+        Pitch();
+        Roll();
+        Yaw();
     }
 
-    void Throttle()
+    private void Throttle()
     {
         if (disableThrottle) return;
-    
-        speed = throttle.GetComponent<ThrottleControl>().throttleValue * maxVelocity;
+
+        speed = throttle.GetComponent<ThrottleControl>().ThrottleValue * maxVelocity;
         rb.AddForce(transform.right * -speed);
     }
 
-    void Drag()
+    private void Drag()
     {
-        bool isDragButtonPressed = dragButton.transform.Find("TriggerZone").GetComponent<DragButton>().IsPressed();
+        bool isDragButtonPressed = dragButtonTriggerZone.IsPressed();
+
         rb.drag = isDragButtonPressed ? maxDrag : minDrag;
+        rb.angularDrag = isDragButtonPressed ? maxAngularDrag : minAngularDrag;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Throttle();
         FlightControl();

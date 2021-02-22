@@ -1,35 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DragButton : MonoBehaviour
 {
-    public Transform upTransform;
-    public Transform downTransform;
+    [SerializeField]
+    private Transform upTransform;
 
-    private Transform hand;
+    [SerializeField]
+    private Transform downTransform;
+
+    [SerializeField]
+    private Transform buttonMesh;
 
     private Vector3 originalHandPosition;
-
     private float magnitudeUpAndDown;
-
     private bool isButtonPressed = false;
 
-    public Transform buttonMesh;
-    void Start()
+    private void Start()
     {
         magnitudeUpAndDown = downTransform.localPosition.y - upTransform.localPosition.y;
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
-        {
             originalHandPosition = other.transform.localPosition;
-        }
     }
 
-    void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
@@ -41,12 +38,10 @@ public class DragButton : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
-        {
             buttonMesh.localPosition = upTransform.localPosition;
-        }
 
         isButtonPressed = false;
     }

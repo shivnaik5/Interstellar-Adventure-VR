@@ -1,18 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RotateBody : MonoBehaviour
 {
-    public float rotateTime = 0.002f;
-    public float orbitSpeed = 1;
+    [SerializeField]
+    private float rotateTime = 0.002f;
 
-    public Transform sun;
+    [SerializeField]
+    private float orbitSpeed = 1;
 
-    public bool disableOrbit = false;
-    public bool disableRotation = false;
+    [SerializeField]
+    private Transform sun;
 
-    void Update()
+    [SerializeField]
+    private bool disableOrbit = false;
+
+    [SerializeField]
+    private bool disableRotation = false;
+
+    private void Update()
     {
         if (!disableRotation)
         {

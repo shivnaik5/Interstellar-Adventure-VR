@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.XR;
 public class GrabThrottle : Grabbable
 {
@@ -9,17 +7,17 @@ public class GrabThrottle : Grabbable
         GameObject collidingObject = item.GetCollidingObject();
         if (collidingObject != null && collidingObject.tag == "Throttle")
         {
-            collidingObject.GetComponent<ThrottleControl>().isGrabbed = true;
+            collidingObject.GetComponent<ThrottleControl>().IsGrabbed = true;
 
             Transform anchor =
-                item.handType == XRNode.RightHand
+                item.HandType == XRNode.RightHand
                 ? collidingObject.transform.GetChild(0)
                 : collidingObject.transform.GetChild(1);
 
-            item.handModel.position = anchor.position;
-            item.handModel.rotation = anchor.rotation;
+            item.HandModel.position = anchor.position;
+            item.HandModel.rotation = anchor.rotation;
 
-            item.handModel.SetParent(anchor);
+            item.HandModel.SetParent(anchor);
         }
     }
 
@@ -28,10 +26,10 @@ public class GrabThrottle : Grabbable
         GameObject objectInHand = item.GetObjectInHand();
         if (objectInHand != null && objectInHand.tag == "Throttle")
         {
-            objectInHand.GetComponent<ThrottleControl>().isGrabbed = false;
-            item.handModel.SetParent(item.transform);
-            item.handModel.localPosition = Vector3.zero;
-            item.handModel.localEulerAngles = new Vector3(-10, 0, -90);
+            objectInHand.GetComponent<ThrottleControl>().IsGrabbed = false;
+            item.HandModel.SetParent(item.transform);
+            item.HandModel.localPosition = Vector3.zero;
+            item.HandModel.localEulerAngles = new Vector3(-10, 0, -90);
         }
     }
 }

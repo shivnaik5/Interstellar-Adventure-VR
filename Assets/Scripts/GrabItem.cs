@@ -1,53 +1,48 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.XR;
 
 public class GrabItem : MonoBehaviour
 {
-    public XRNode handType;
-    public Transform handModel;
-    public Transform hand;
+    [SerializeField]
+    private XRNode handType;
+
+    [SerializeField]
+    private Transform handModel;
+
+    [SerializeField]
+    private Transform hand;
 
     private GameObject collidingObject;
     private GameObject objectInHand;
 
-    void Update()
+    private void Update()
     {
         bool isGripDown = IsGripDown();
 
         if (isGripDown && collidingObject)
-        {
             GrabObject();
-        }
 
         if (!isGripDown && objectInHand)
-        {
             ReleaseObject();
-        }
     }
 
-    void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject)
-        {
+        if (other.gameObject && other.GetComponent<Grabbable>())
             collidingObject = other.gameObject;
-        }
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (IsGripDown()) return;
 
         if (objectInHand)
-        {
             ReleaseObject();
-        }
 
         collidingObject = null;
     }
 
-    bool IsGripDown()
+    private bool IsGripDown()
     {
         InputDevice inputHand = InputDevices.GetDeviceAtXRNode(handType);
         
@@ -57,21 +52,18 @@ public class GrabItem : MonoBehaviour
         return isGripDown;
     }
 
-    void GrabObject()
+    private void GrabObject()
     {
         objectInHand = collidingObject;
         if (collidingObject.GetComponent<Grabbable>())
-        {
             collidingObject.GetComponent<Grabbable>().Grab(this);
-        }
     }
 
-    void ReleaseObject()
+    private void ReleaseObject()
     {
         if (collidingObject.GetComponent<Grabbable>())
-        {
             objectInHand.GetComponent<Grabbable>().Release(this);
-        }
+
         objectInHand = null;
     }
 
@@ -83,5 +75,29 @@ public class GrabItem : MonoBehaviour
     public GameObject GetCollidingObject()
     {
         return collidingObject;
+    }
+
+    public XRNode HandType
+    {
+        get
+        {
+            return handType;
+        }
+    }
+
+    public Transform Hand
+    {
+        get
+        {
+            return hand;
+        }
+    }
+
+    public Transform HandModel
+    {
+        get
+        {
+            return handModel;
+        }
     }
 }

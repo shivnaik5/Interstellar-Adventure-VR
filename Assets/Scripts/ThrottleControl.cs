@@ -1,31 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ThrottleControl : MonoBehaviour
 {
-    public Transform throttleStart;
-    public Transform throttleEnd;
+    [SerializeField]
+    private Transform throttleStart;
 
-    public Transform handThrottleStart;
+    [SerializeField]
+    private Transform throttleEnd;
 
-    public GameObject dragButton;
+    [SerializeField]
+    private Transform handThrottleStart;
 
-    public bool isGrabbed;
+    [SerializeField]
+    private GameObject dragButton;
 
-    public float throttleValue;
+    [SerializeField]
+    private List<Texture> m_speeds = new List<Texture>();
 
-    void Update()
+    [SerializeField]
+    private GameObject spacecraft;
+
+    [SerializeField]
+    private Renderer m_rend;
+
+    [ReadOnly] [SerializeField]
+    private bool isGrabbed;
+
+    [ReadOnly] [SerializeField]
+    private float throttleValue;
+
+    private SpacecraftFlightControls spacecraftFlightControls;
+    private DragButton dragButtonComponent;
+
+    private void Awake()
     {
-        bool isDragButtonPressed = dragButton.transform.Find("TriggerZone").GetComponent<DragButton>().IsPressed();
-        if (isDragButtonPressed)
-        {
-            transform.position = throttleStart.position;
-            throttleValue = 0;
-        }
+        spacecraftFlightControls = spacecraft.GetComponent<SpacecraftFlightControls>();
+        dragButtonComponent = dragButton.transform.Find("TriggerZone").GetComponent<DragButton>();
     }
 
-    void OnTriggerStay(Collider other)
+    private void Update()
+    {
+        CheckDragButton();
+        UpdateThrottleGauge();
+    }
+
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player" && isGrabbed == true)
         {
@@ -42,6 +62,46 @@ public class ThrottleControl : MonoBehaviour
             transform.position = new Vector3(updatedPosition.x, updatedPosition.y, updatedPosition.z);
 
             throttleValue = dotProduct / magnitude;
+        }
+    }
+
+    private void CheckDragButton()
+    {
+        bool isDragButtonPressed = dragButtonComponent.IsPressed();
+        if (isDragButtonPressed)
+        {
+            transform.position = throttleStart.position;
+            throttleValue = 0;
+        }
+    }
+
+    private void UpdateThrottleGauge()
+    {
+        float index = throttleValue * m_speeds.Count;
+        index = Mathf.Clamp(Mathf.Ceil(index), 0, m_speeds.Count - 1);
+
+        int intIndex = (int)index;
+        m_rend.materials[5].mainTexture = m_speeds[intIndex];
+    }
+
+    public bool IsGrabbed
+    {
+        get
+        {
+            return isGrabbed;
+        }
+
+        set
+        {
+            isGrabbed = value;
+        }
+    }
+
+    public float ThrottleValue
+    {
+        get
+        {
+            return throttleValue;
         }
     }
 }

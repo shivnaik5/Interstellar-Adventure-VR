@@ -1,56 +1,52 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.XR;
+
+/* Testing Oculus Quest 2 controller controls */
 
 public class RigidBodySpacecraft : MonoBehaviour
 {
-    public float torque = 100f;
-    public float thrust = 100f;
-    public float speed = 50f;
+    [SerializeField]
+    private float speed = 50f;
 
-    public Rigidbody rb;
+    [SerializeField]
+    private Rigidbody rb;
 
     private InputDevice rightHand;
 
-    void Start()
+    private float maxDrag = 3f;
+    private float minDrag = 0f;
+
+    private float torque = 100f;
+    private float thrust = 100f;
+
+    private void Start()
     {
         rightHand = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Thrust();
         Drag();
     }
 
-    void Thrust()
+    private void Thrust()
     {
         if (Input.GetButtonDown("Right A Button Press"))
-        {
             rb.AddForce(transform.right * -speed * 5);
-        }
     }
 
-    void Drag()
+    private void Drag()
     {
-        if (Input.GetButtonDown("Left X Button Press"))
-        {
-            rb.drag = 3;
-        }
-        else if (Input.GetButtonUp("Left X Button Press"))
-        {
-            rb.drag = 0;
-        }
+        rb.drag = Input.GetButtonDown("Left X Button Press") ? maxDrag : minDrag;
     }
 
-    void RightJoystickMove()
+    private void RightJoystickMove()
     {
         InputFeatureUsage<Vector2> primary2DAxis = CommonUsages.primary2DAxis;
         if (rightHand.TryGetFeatureValue(primary2DAxis, out Vector2 primary2DValue) && primary2DValue != Vector2.zero)
         {
             Debug.Log("primary2daxisclick is pressed " + primary2DValue);
         }
-
     }
 }

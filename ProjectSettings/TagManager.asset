@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Throttle
   - FlightStick
+  - Spacecraft
   layers:
   - Default
   - TransparentFX

@@ -1,11 +1,13 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.XR;
 
 public class HandAnimation : MonoBehaviour
 {
-    public XRNode HandType;
-    public Animator HandAnimator;
+    [SerializeField]
+    private XRNode handType;
+
+    [SerializeField]
+    private Animator handAnimator;
 
     private void Update()
     {
@@ -16,7 +18,7 @@ public class HandAnimation : MonoBehaviour
         bool secondaryTouch = false;
         float triggerDown = 0;
 
-        InputDevice hand = InputDevices.GetDeviceAtXRNode(HandType);
+        InputDevice hand = InputDevices.GetDeviceAtXRNode(handType);
         hand.TryGetFeatureValue(CommonUsages.gripButton, out grip);
         hand.TryGetFeatureValue(CommonUsages.triggerButton, out trigger);
         hand.TryGetFeatureValue(CommonUsages.primary2DAxisTouch, out primaryAxisTouch);
@@ -28,16 +30,13 @@ public class HandAnimation : MonoBehaviour
 
         float triggerTotal = 0f;
         if (trigger)
-        {
             triggerTotal = 0.1f;
-        }
-        if (triggerDown > 0.1f)
-        {
-            triggerTotal = triggerDown;
-        }
 
-        HandAnimator.SetBool("GrabbingGrip", grip);
-        HandAnimator.SetBool("ThumbUp", !thumbDown);
-        HandAnimator.SetFloat("TriggerDown", triggerTotal);
+        if (triggerDown > 0.1f)
+            triggerTotal = triggerDown;
+
+        handAnimator.SetBool("GrabbingGrip", grip);
+        handAnimator.SetBool("ThumbUp", !thumbDown);
+        handAnimator.SetFloat("TriggerDown", triggerTotal);
     }
 }

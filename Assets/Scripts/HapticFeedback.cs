@@ -1,17 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.XR;
 
 public class HapticFeedback : MonoBehaviour
 {
-    public XRNode m_leftNode;
-    public XRNode m_rightNode;
+    [SerializeField]
+    private XRNode m_leftNode;
+
+    [SerializeField]
+    private XRNode m_rightNode;
 
     private static InputDevice leftController;
     private static InputDevice rightController;
 
-    void Awake()
+    private void Awake()
     {
         leftController = InputDevices.GetDeviceAtXRNode(m_leftNode);
         rightController = InputDevices.GetDeviceAtXRNode(m_rightNode);

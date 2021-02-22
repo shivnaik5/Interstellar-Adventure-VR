@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.XR;
 
 public class GrabFlightStick : Grabbable
@@ -11,15 +9,15 @@ public class GrabFlightStick : Grabbable
         if (collidingObject != null && collidingObject.tag == "FlightStick")
         {
             Transform anchor =
-                item.handType == XRNode.RightHand
+                item.HandType == XRNode.RightHand
                 ? collidingObject.transform.GetChild(0).GetChild(0).GetChild(0)
                 : collidingObject.transform.GetChild(0).GetChild(0).GetChild(1);
         
-            collidingObject.GetComponent<FlightStick>().SetHand(item.hand);
-            item.handModel.position = anchor.position;
-            item.handModel.rotation = anchor.rotation;
+            collidingObject.GetComponent<FlightStick>().SetHand(item.Hand);
+            item.HandModel.position = anchor.position;
+            item.HandModel.rotation = anchor.rotation;
 
-            item.handModel.SetParent(anchor);
+            item.HandModel.SetParent(anchor);
         }
     }
 
@@ -29,9 +27,9 @@ public class GrabFlightStick : Grabbable
         if (objectInHand != null && objectInHand.tag == "FlightStick")
         {
             objectInHand.GetComponent<FlightStick>().ReleaseHand();
-            item.handModel.SetParent(item.transform);
-            item.handModel.localPosition = Vector3.zero;
-            item.handModel.localEulerAngles = new Vector3(-10, 0, -90);
+            item.HandModel.SetParent(item.transform);
+            item.HandModel.localPosition = Vector3.zero;
+            item.HandModel.localEulerAngles = new Vector3(-10, 0, -90);
         }
     }
 }

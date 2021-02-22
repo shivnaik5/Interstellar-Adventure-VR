@@ -1,29 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FlightStick : MonoBehaviour
 {
-    public bool isGrabbed;
+    private bool isGrabbed;
 
     private Quaternion originalLocalRotation;
     private Quaternion originalTwistLocalRotation;
 
     private Vector3? originalHandPosition;
-    public Vector3? originalHandRotation;
+    private Vector3? originalHandRotation;
 
     private Transform hand;
 
     private float xDiff;
     private float zDiff;
-
     private float zRotationDiff;
 
-    private float rot = 0f;
-
+    [SerializeField]
     public Transform twistPivot;
 
-    void Start()
+    private void Start()
     {
         originalLocalRotation = transform.localRotation;
         originalTwistLocalRotation = twistPivot.localRotation;
@@ -32,7 +28,7 @@ public class FlightStick : MonoBehaviour
         originalHandRotation = null;
     }
 
-    void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
@@ -60,7 +56,7 @@ public class FlightStick : MonoBehaviour
     private void JoyStickFeedback()
     {
         CalculateHandRotationDiff();
-        HapticFeedback.VibrateRight(Mathf.Abs(xDiff) + Mathf.Abs(zDiff));
+        HapticFeedback.VibrateRight((Mathf.Abs(xDiff) + Mathf.Abs(zDiff)) * 2);
     }
 
     private float GetZRotationDiff()

@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Grabbable : MonoBehaviour
 {
-    public GameObject Parent;
+    [SerializeField]
+    private GameObject Parent;
 
     public virtual void Grab(GrabItem item)
     {
